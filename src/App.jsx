@@ -278,11 +278,6 @@ const StaycationsWebsite = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-3">
-              <img 
-                src={favicon} 
-                alt="Staycations Logo" 
-                className="w-12 h-12 object-contain"
-              />
             </div>
             
             {/* Desktop Menu */}
@@ -345,7 +340,7 @@ const StaycationsWebsite = () => {
           {/* Large Logo Above Text */}
           <div className="mb-8">
             <img 
-              src={logo} 
+              src={favicon} 
               alt="Staycations" 
               className="w-64 h-auto mx-auto object-contain"
             />
@@ -385,8 +380,17 @@ const StaycationsWebsite = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-gradient-to-r from-blue-600 to-cyan-600 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative py-16 bg-gradient-to-r from-blue-600 to-cyan-600 text-white overflow-hidden">
+        {/* Background Logo */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-10">
+          <img 
+            src={logo} 
+            alt="Staycations Background Logo" 
+            className="w-96 h-96 object-contain"
+          />
+        </div>
+        
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
