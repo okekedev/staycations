@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronDown, Phone, Mail, MapPin, Star, Menu, X, Check, ArrowRight, Play, Award, Users, Clock, Shield, Zap, Heart } from 'lucide-react';
 
-// Import logos
-import logo from '/src/assets/logo.png';
-import favicon from '/src/assets/favicon.png';
-
 const StaycationsWebsite = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,161 +30,216 @@ const StaycationsWebsite = () => {
     return () => clearInterval(timer);
   }, []);
 
-  // Project images from assets folder
+  // Handle form input changes
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitMessage('');
+
+    try {
+      // Create mailto link with form data
+      const subject = encodeURIComponent('New Quote Request from Website');
+      const body = encodeURIComponent(
+        `New quote request from ${formData.name}\n\n` +
+        `Name: ${formData.name}\n` +
+        `Email: ${formData.email}\n` +
+        `Phone: ${formData.phone}\n` +
+        `Message: ${formData.message}\n\n` +
+        `Submitted from: Staycations Website`
+      );
+      
+      const mailtoLink = `mailto:quotes@staycationpools.com?subject=${subject}&body=${body}`;
+      
+      // Open email client
+      window.location.href = mailtoLink;
+      
+      // Show success message
+      setSubmitMessage('Opening your email client to send the quote request...');
+      
+      // Clear form
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        message: ''
+      });
+      
+    } catch (error) {
+      setSubmitMessage('There was an error. Please try again or call us directly.');
+    } finally {
+      setIsSubmitting(false);
+      
+      // Clear message after 5 seconds
+      setTimeout(() => {
+        setSubmitMessage('');
+      }, 5000);
+    }
+  };
+
+  // Project images from public/images folder
   const galleryImages = [
     {
       id: 1,
-      src: "/src/assets/IMG_1271.jpg",
+      src: "/images/IMG_1271.jpg",
       alt: "Luxury Pool with Infinity Edge",
       category: "Pools"
     },
     {
       id: 2,
-      src: "/src/assets/IMG_1272.jpg",
+      src: "/images/IMG_1272.jpg",
       alt: "Resort-Style Pool Design",
       category: "Pools"
     },
     {
       id: 3,
-      src: "/src/assets/IMG_6965.jpg",
+      src: "/images/IMG_6965.jpg",
       alt: "Modern Pool with Lighting",
       category: "Pools"
     },
     {
       id: 4,
-      src: "/src/assets/IMG_6966.jpg",
+      src: "/images/IMG_6966.jpg",
       alt: "Custom Pool Installation",
       category: "Pools"
     },
     {
       id: 5,
-      src: "/src/assets/IMG_6969.jpg",
+      src: "/images/IMG_6969.jpg",
       alt: "Pool with Spa Features",
       category: "Pools"
     },
     {
       id: 6,
-      src: "/src/assets/IMG_7468.jpg",
+      src: "/images/IMG_7468.jpg",
       alt: "Elegant Pool Design",
       category: "Pools"
     },
     {
       id: 7,
-      src: "/src/assets/IMG_7471.jpg",
+      src: "/images/IMG_7471.jpg",
       alt: "Backyard Pool Paradise",
       category: "Pools"
     },
     {
       id: 8,
-      src: "/src/assets/IMG_8002.jpg",
+      src: "/images/IMG_8002.jpg",
       alt: "Luxury Pool Installation",
       category: "Pools"
     },
     {
       id: 9,
-      src: "/src/assets/IMG_8004.jpg",
+      src: "/images/IMG_8004.jpg",
       alt: "Modern Pool Design",
       category: "Pools"
     },
     {
       id: 10,
-      src: "/src/assets/IMG_8006.jpg",
+      src: "/images/IMG_8006.jpg",
       alt: "Custom Pool Features",
       category: "Pools"
     },
     {
       id: 11,
-      src: "/src/assets/IMG_0614.jpg",
+      src: "/images/IMG_0614.jpg",
       alt: "Concrete Hardscaping",
       category: "Hardscaping"
     },
     {
       id: 12,
-      src: "/src/assets/IMG_0615.jpg",
+      src: "/images/IMG_0615.jpg",
       alt: "Stamped Concrete Patio",
       category: "Hardscaping"
     },
     {
       id: 13,
-      src: "/src/assets/IMG_0616.jpg",
+      src: "/images/IMG_0616.jpg",
       alt: "Decorative Concrete Work",
       category: "Hardscaping"
     },
     {
       id: 14,
-      src: "/src/assets/IMG_0852.jpg",
+      src: "/images/IMG_0852.jpg",
       alt: "Professional Hardscaping",
       category: "Hardscaping"
     },
     {
       id: 15,
-      src: "/src/assets/IMG_0858.jpg",
+      src: "/images/IMG_0858.jpg",
       alt: "Custom Concrete Design",
       category: "Hardscaping"
     },
     {
       id: 16,
-      src: "/src/assets/IMG_1080.jpg",
+      src: "/images/IMG_1080.jpg",
       alt: "Artificial Turf Installation",
       category: "Turf"
     },
     {
       id: 17,
-      src: "/src/assets/IMG_1081.jpg",
+      src: "/images/IMG_1081.jpg",
       alt: "Synthetic Grass Landscape",
       category: "Turf"
     },
     {
       id: 18,
-      src: "/src/assets/IMG_1086.jpg",
+      src: "/images/IMG_1086.jpg",
       alt: "Premium Turf Solution",
       category: "Turf"
     },
     {
       id: 19,
-      src: "/src/assets/IMG_1087.jpg",
+      src: "/images/IMG_1087.jpg",
       alt: "Eco-Friendly Turf",
       category: "Turf"
     },
     {
       id: 20,
-      src: "/src/assets/IMG_1089.jpg",
+      src: "/images/IMG_1089.jpg",
       alt: "Natural Looking Turf",
       category: "Turf"
     },
     {
       id: 21,
-      src: "/src/assets/IMG_3010.jpg",
+      src: "/images/IMG_3010.jpg",
       alt: "Outdoor Living Space",
       category: "Outdoor Living"
     },
     {
       id: 22,
-      src: "/src/assets/IMG_3041.jpg",
+      src: "/images/IMG_3041.jpg",
       alt: "Backyard Entertainment Area",
       category: "Outdoor Living"
     },
     {
       id: 23,
-      src: "/src/assets/IMG_3210.jpg",
+      src: "/images/IMG_3210.jpg",
       alt: "Custom Outdoor Kitchen",
       category: "Outdoor Living"
     },
     {
       id: 24,
-      src: "/src/assets/IMG_3213.jpg",
+      src: "/images/IMG_3213.jpg",
       alt: "Fire Pit Installation",
       category: "Outdoor Living"
     },
     {
       id: 25,
-      src: "/src/assets/IMG_3214.jpg",
+      src: "/images/IMG_3214.jpg",
       alt: "Complete Backyard Transformation",
       category: "Outdoor Living"
     }
   ];
 
-  const heroImage = "/src/assets/IMG_1271.jpg";
+  const heroImage = "/images/IMG_1271.jpg";
 
   const services = [
     {
@@ -188,28 +247,28 @@ const StaycationsWebsite = () => {
       description: "Luxury pools tailored to your space and style",
       icon: "🏊‍♂️",
       features: ["Custom shapes", "LED lighting", "Heating systems", "Infinity edges"],
-      image: "/src/assets/IMG_1272.jpg"
+      image: "/images/IMG_1272.jpg"
     },
     {
       title: "Concrete & Hardscaping",
       description: "Beautiful concrete work and outdoor surfaces",
       icon: "🏗️",
       features: ["Stamped concrete", "Patios", "Walkways", "Retaining walls"],
-      image: "/src/assets/IMG_0614.jpg"
+      image: "/images/IMG_0614.jpg"
     },
     {
       title: "Artificial Turf",
       description: "Low-maintenance, year-round green spaces",
       icon: "🌱",
       features: ["Pet-friendly", "Drought resistant", "Easy maintenance", "Natural look"],
-      image: "/src/assets/IMG_1080.jpg"
+      image: "/images/IMG_1080.jpg"
     },
     {
       title: "Outdoor Living",
       description: "Complete backyard transformations",
       icon: "🏡",
       features: ["Fire pits", "Outdoor kitchens", "Pergolas", "Entertainment areas"],
-      image: "/src/assets/IMG_3210.jpg"
+      image: "/images/IMG_3210.jpg"
     }
   ];
 
@@ -249,25 +308,25 @@ const StaycationsWebsite = () => {
       step: "01",
       title: "Consultation",
       description: "We start with a detailed consultation to understand your vision and requirements.",
-      image: "/src/assets/IMG_2601.jpg"
+      image: "/images/IMG_2601.jpg"
     },
     {
       step: "02",
       title: "Design",
       description: "Our experts create custom 3D designs tailored to your space and style.",
-      image: "/src/assets/IMG_1161.jpg"
+      image: "/images/IMG_1161.jpg"
     },
     {
       step: "03",
       title: "Construction",
       description: "Professional installation with attention to every detail and quality craftsmanship.",
-      image: "/src/assets/IMG_8002.jpg"
+      image: "/images/IMG_8002.jpg"
     },
     {
       step: "04",
       title: "Completion",
       description: "Final walkthrough and handover of your dream backyard oasis.",
-      image: "/src/assets/IMG_0852.jpg"
+      image: "/images/IMG_0852.jpg"
     }
   ];
 
@@ -278,6 +337,15 @@ const StaycationsWebsite = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-3">
+              {/* Logo */}
+              <img 
+                src="/images/favicon.png" 
+                alt="Staycations Logo" 
+                className="w-10 h-10 object-contain"
+              />
+              <span className={`text-2xl font-bold ${scrolled ? 'text-gray-800' : 'text-white'}`}>
+                Staycations
+              </span>
             </div>
             
             {/* Desktop Menu */}
@@ -340,7 +408,7 @@ const StaycationsWebsite = () => {
           {/* Large Logo Above Text */}
           <div className="mb-8">
             <img 
-              src={favicon} 
+              src="/images/favicon.png" 
               alt="Staycations" 
               className="w-64 h-auto mx-auto object-contain"
             />
@@ -384,7 +452,7 @@ const StaycationsWebsite = () => {
         {/* Background Logo */}
         <div className="absolute inset-0 flex items-center justify-center opacity-10">
           <img 
-            src={logo} 
+            src="/images/logo.png" 
             alt="Staycations Background Logo" 
             className="w-96 h-96 object-contain"
           />
@@ -560,31 +628,56 @@ const StaycationsWebsite = () => {
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
               <h3 className="text-2xl font-bold mb-6">Get Your Free Quote</h3>
-              <div className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 <input 
                   type="text" 
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
                   placeholder="Your Name" 
+                  required
                   className="w-full p-4 rounded-xl bg-white/90 text-gray-800 border-0 focus:ring-4 focus:ring-blue-300/50 transition-all"
                 />
                 <input 
                   type="email" 
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
                   placeholder="Email Address" 
+                  required
                   className="w-full p-4 rounded-xl bg-white/90 text-gray-800 border-0 focus:ring-4 focus:ring-blue-300/50 transition-all"
                 />
                 <input 
                   type="tel" 
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
                   placeholder="Phone Number" 
+                  required
                   className="w-full p-4 rounded-xl bg-white/90 text-gray-800 border-0 focus:ring-4 focus:ring-blue-300/50 transition-all"
                 />
                 <textarea 
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
                   placeholder="Tell us about your dream project" 
                   rows="4" 
+                  required
                   className="w-full p-4 rounded-xl bg-white/90 text-gray-800 border-0 focus:ring-4 focus:ring-blue-300/50 transition-all resize-none"
                 ></textarea>
-                <button className="w-full bg-yellow-400 text-yellow-800 py-4 rounded-xl font-bold hover:bg-yellow-300 transition-all transform hover:scale-105 shadow-lg">
-                  Get Free Quote
+                <button 
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-yellow-400 text-yellow-800 py-4 rounded-xl font-bold hover:bg-yellow-300 transition-all transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                >
+                  {isSubmitting ? 'Sending...' : 'Get Free Quote'}
                 </button>
-              </div>
+                {submitMessage && (
+                  <div className="text-center text-sm text-yellow-200 bg-blue-600/30 p-3 rounded-lg">
+                    {submitMessage}
+                  </div>
+                )}
+              </form>
             </div>
           </div>
         </div>
@@ -673,10 +766,11 @@ const StaycationsWebsite = () => {
             <div className="md:col-span-2">
               <div className="flex items-center space-x-3 mb-6">
                 <img 
-                  src={favicon} 
+                  src="/images/favicon.png" 
                   alt="Staycations Logo" 
                   className="w-10 h-10 object-contain"
                 />
+                <span className="text-xl font-bold">Staycations</span>
               </div>
               <p className="text-gray-400 text-lg mb-6 max-w-md">
                 Creating personal oases one backyard at a time. Your dream outdoor space is just a conversation away.
