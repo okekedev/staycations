@@ -343,9 +343,7 @@ const StaycationsWebsite = () => {
                 alt="Staycations Logo" 
                 className="w-10 h-10 object-contain"
               />
-              <span className={`text-2xl font-bold ${scrolled ? 'text-gray-800' : 'text-white'}`}>
-                Staycations
-              </span>
+              
             </div>
             
             {/* Desktop Menu */}
