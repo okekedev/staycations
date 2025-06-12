@@ -57,7 +57,7 @@ const StaycationsWebsite = () => {
         `Submitted from: Staycations Website`
       );
       
-      const mailtoLink = `mailto:quotes@staycationpools.com?subject=${subject}&body=${body}`;
+      const mailtoLink = `mailto:service@staycationstx.com?subject=${subject}&body=${body}`;
       
       // Open email client
       window.location.href = mailtoLink;
@@ -741,12 +741,12 @@ const StaycationsWebsite = () => {
               <p className="text-gray-300 text-lg">(817) 592-1134</p>
             </a>
             <a 
-              href="mailto:service@staycationpools.com"
+              href="mailto:service@staycationstx.com"
               className="bg-gray-700/50 backdrop-blur-sm rounded-2xl p-8 hover:bg-gray-600/50 transition-all transform hover:-translate-y-2 block text-center"
             >
               <Mail className="w-12 h-12 text-blue-400 mx-auto mb-4" />
               <h3 className="text-xl font-semibold mb-2">Email Us</h3>
-              <p className="text-gray-300 text-sm break-all">service@staycationpools.com</p>
+              <p className="text-gray-300 text-sm break-all">service@staycationstx.com</p>
             </a>
             <div className="bg-gray-700/50 backdrop-blur-sm rounded-2xl p-8 hover:bg-gray-600/50 transition-all transform hover:-translate-y-2">
               <MapPin className="w-12 h-12 text-blue-400 mx-auto mb-4" />

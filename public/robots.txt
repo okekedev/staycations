@@ -1,0 +1,14 @@
+# robots.txt for https://www.staycationstx.com
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.staycationstx.com/sitemap.xml
+
+# Crawl delay (optional, helps prevent server overload)
+Crawl-delay: 1
+
+# Disallow access to any admin or private areas if they exist
+# Disallow: /admin/
+# Disallow: /private/
