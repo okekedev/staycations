@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronDown, Phone, Mail, MapPin, Star, Menu, X, Check, ArrowRight, Play, Award, Users, Clock, Shield, Zap, Heart } from 'lucide-react';
-import LazyImage from './components/LazyImage';
 
 const StaycationsWebsite = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -488,7 +487,7 @@ const StaycationsWebsite = () => {
             {services.map((service, index) => (
               <div key={index} className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
                 <div className="relative h-64 overflow-hidden">
-                  <LazyImage 
+                  <img 
                     src={service.image} 
                     alt={service.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
@@ -529,7 +528,7 @@ const StaycationsWebsite = () => {
           {/* Featured Image */}
           <div className="mb-12">
             <div className="relative h-96 md:h-[500px] rounded-2xl overflow-hidden shadow-2xl">
-              <LazyImage 
+              <img 
                 src={galleryImages[currentSlide].src} 
                 alt={galleryImages[currentSlide].alt}
                 className="w-full h-full object-cover"
@@ -549,7 +548,7 @@ const StaycationsWebsite = () => {
                 className={`relative rounded-xl overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105 ${index === currentSlide ? 'ring-4 ring-blue-500' : ''}`}
                 onClick={() => setCurrentSlide(index)}
               >
-                <LazyImage 
+                <img 
                   src={image.src} 
                   alt={image.alt}
                   className="w-full h-32 md:h-40 object-cover"
@@ -578,7 +577,7 @@ const StaycationsWebsite = () => {
               <div key={index} className={`flex flex-col lg:flex-row items-center gap-12 ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
                 <div className="lg:w-1/2">
                   <div className="relative rounded-2xl overflow-hidden shadow-xl">
-                    <LazyImage 
+                    <img 
                       src={process.image} 
                       alt={process.title}
                       className="w-full h-64 md:h-80 object-cover"
