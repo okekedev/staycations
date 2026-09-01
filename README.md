@@ -1,56 +1,52 @@
-# Staycations
+# Staycations — Pool Design & Outdoor Living
 
-Staycations is a modern React-templated website for showcasing vacation rentals, local getaways, and staycation experiences. Built as a customizable starter template for travel and hospitality sites, it features responsive design and is ready for deployment as a static site or full-stack app.[attached_file:1]
+The live website for **Staycations**, a luxury pool design and outdoor living company serving DFW, Texas. Built with React + Vite and deployed as an Azure Static Web App.
 
-## Demo
+**Live site:** https://staycationstx.com
 
-Live demo: https://staycationspools.com
+## Screenshots
+
+![Home — Your Personal Paradise Awaits](screenshots/home.png)
+
+![Services — pools, turf, outdoor living](screenshots/services.png)
+
+![Gallery — project portfolio](screenshots/gallery.png)
 
 ## Features
 
-- React-based architecture with component reusability.[attached_file:1]
-- Responsive design for mobile, tablet, and desktop.
-- Hero sections, property listings, booking CTAs, and testimonial carousels.
-- SEO-optimized structure with modern meta tags and Open Graph support.[attached_file:1]
-- Easy customization for hotels, Airbnbs, vacation homes, or travel agencies.
+- React + Vite single-page site with smooth scroll sections
+- Hero with video/photo backdrop and call CTAs
+- Services grid (pool design, artificial turf, outdoor living)
+- Project gallery ("Our Work") portfolio
+- Process, About, and Contact sections
+- Fully responsive — mobile, tablet, desktop
+- SEO meta + Open Graph tags
 
 ## Tech Stack
 
-- **React**: Dynamic UI components and state management.[attached_file:1]
-- **CSS/HTML**: Responsive styling with GitHub's modern asset pipeline.[attached_file:1]
-- **JavaScript**: Interactive features and smooth animations.
-- Deployment-ready for Netlify, Vercel, or GitHub Pages.
+- **React** — component-based UI
+- **Vite** — fast dev server and production builds
+- **Azure Static Web Apps** — hosting + CI deploy on push
 
 ## Getting Started
 
-1. Clone the repository: git clone https://github.com/okekedev/staycations.git
+```bash
+git clone https://github.com/okekedev/staycations.git
+cd staycations
+npm install
+npm run dev
+```
 
-2. Navigate to the project folder: cd staycations
+Production build:
 
-text
-3. Install dependencies (if using React build tools): npm install
+```bash
+npm run build
+```
 
-text
-4. Start development server: npm start
+## Reuse as a Template
 
-## Project Goals
-
-- Provide a polished React template for staycation/vacation rental websites.
-- Enable quick customization for personal or client projects.
-- Demonstrate modern web practices for travel industry sites.
-
-## Roadmap
-
-- Add React Router for multi-page experiences.
-- Integrate booking APIs (e.g., Stripe, Calendly).
-- Property search/filter functionality.
-- Image optimization and lazy loading.
-- Theme switcher (light/dark mode).
-
-## Contributing
-
-Fork, create a branch, add features, and submit a PR. Focus on new components, styling improvements, or travel-specific integrations.
+The structure works well as a starter for any local-service business site (pools, landscaping, contractors): swap the images in `public/`, edit the section content in `src/`, and restyle the palette.
 
 ## License
 
-Free
+Free to use.
