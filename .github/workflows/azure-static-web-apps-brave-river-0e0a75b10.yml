@@ -35,6 +35,8 @@ jobs:
         run: |
           T=$(az staticwebapp secrets list -n Staycations -g Staycations --query "properties.apiKey" -o tsv)
           echo "::add-mask::$T"
+          echo "Token length: ${#T}"
+          [ -n "$T" ] || { echo "Empty deployment token" >&2; exit 1; }
           echo "value=$T" >> "$GITHUB_OUTPUT"
 
       - name: Build and deploy
