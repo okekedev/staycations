@@ -795,6 +795,7 @@ const StaycationsWebsite = () => {
           </div>
           <div className="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
             <p>&copy; 2025 Staycations. All rights reserved. | Privacy Policy | Terms of Service</p>
+            <p className="mt-2 text-sm">Website by <a href="https://sundai.us/" className="hover:text-white underline-offset-2 hover:underline">Sundai</a></p>
           </div>
         </div>
       </footer>
