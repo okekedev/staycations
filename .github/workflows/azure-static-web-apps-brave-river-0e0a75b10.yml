@@ -33,7 +33,7 @@ jobs:
       - name: Fetch SWA deployment token
         id: token
         run: |
-          T=$(az staticwebapp secrets list -n Staycations -g Staycations --query "properties.apiKey" -o tsv)
+          T=$(az staticwebapp secrets list -n swa-staycations -g rg-websites --query "properties.apiKey" -o tsv)
           echo "::add-mask::$T"
           echo "Token length: ${#T}"
           [ -n "$T" ] || { echo "Empty deployment token" >&2; exit 1; }
@@ -64,7 +64,7 @@ jobs:
       - name: Fetch SWA deployment token
         id: token
         run: |
-          T=$(az staticwebapp secrets list -n Staycations -g Staycations --query "properties.apiKey" -o tsv)
+          T=$(az staticwebapp secrets list -n swa-staycations -g rg-websites --query "properties.apiKey" -o tsv)
           echo "::add-mask::$T"
           echo "value=$T" >> "$GITHUB_OUTPUT"
 
