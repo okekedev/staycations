@@ -39,10 +39,19 @@ jobs:
           [ -n "$T" ] || { echo "Empty deployment token" >&2; exit 1; }
           echo "value=$T" >> "$GITHUB_OUTPUT"
 
+      # The Staycations app only accepts deploys signed with GitHub's own
+      # identity token, so send that instead of a deployment key.
+      - name: Get GitHub identity token
+        id: idtoken
+        uses: actions/github-script@v7
+        with:
+          script: return await core.getIDToken()
+          result-encoding: string
+
       - name: Build and deploy
         uses: Azure/static-web-apps-deploy@v1
         with:
-          azure_static_web_apps_api_token: ${{ steps.token.outputs.value }}
+          github_id_token: ${{ steps.idtoken.outputs.result }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
           app_location: "/"
